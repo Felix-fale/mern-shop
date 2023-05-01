@@ -15,6 +15,11 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   });
 }
 
+// import routes
+const user = require("./controller/user.js");
+
+app.use("/api/v2/user", user);
+
 // it's for ErrorHandling
 app.use(ErrorHandler);
 
