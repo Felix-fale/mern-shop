@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
+import axios from "axios";
+import { server } from "../../server";
 
 function Signup(props) {
   const [email, setEmail] = useState("");
@@ -16,8 +18,24 @@ function Signup(props) {
     setAvatar(file);
   };
 
-  const handleSubmit = () => {
-    console.log("fff");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const config = { headers: { "Content-type": "multipart/form-data" } };
+    const newForm = new FormData();
+
+    newForm.append("file", avatar);
+    newForm.append("name", name);
+    newForm.append("email", email);
+    newForm.append("password", password);
+
+    axios
+      .post(`${server}/user/create-user`, newForm, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
