@@ -7,7 +7,7 @@ const ErrorHandler = require("../utils/ErrorHandler");
 // const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
-// const sendMail = require("../utils/sendMail");
+const sendMail = require("../utils/sendMail");
 // const sendToken = require("../utils/jwtToken");
 // const { isAuthenticated } = require("../middleware/auth");
 // const user = require("../model/user");
@@ -56,15 +56,16 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     const activationUrl = `http://localhost:3000/activation/${activationToken}`;
 
     try {
-      // await sendMail({
-      //   email: user.email,
-      //   subject: "Activate your account",
-      //   message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
-      // });
-      // res.status(201).json({
-      //   success: true,
-      //   message: `please check your email:- ${user.email} to activate your account!`,
-      // });
+      // 2:55m
+      await sendMail({
+        email: user.email,
+        subject: "Activate your account",
+        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+      });
+      res.status(201).json({
+        success: true,
+        message: `please check your email:- ${user.email} to activate your account!`,
+      });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }

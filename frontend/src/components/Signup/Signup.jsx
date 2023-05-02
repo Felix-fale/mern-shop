@@ -31,10 +31,11 @@ function Signup(props) {
     axios
       .post(`${server}/user/create-user`, newForm, config)
       .then((res) => {
-        if (res.data.success === true) {
-          Navigate("/");
-        }
-        console.log(res);
+        // if (res.data.success === true) {
+        //   Navigate("/");
+        // }
+        // console.log(res);
+        alert(res.message);
       })
       .catch((err) => {
         console.log(err);
