@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import styles from "../../styles/styles";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
@@ -31,6 +31,9 @@ function Signup(props) {
     axios
       .post(`${server}/user/create-user`, newForm, config)
       .then((res) => {
+        if (res.data.success === true) {
+          Navigate("/");
+        }
         console.log(res);
       })
       .catch((err) => {

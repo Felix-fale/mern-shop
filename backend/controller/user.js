@@ -5,7 +5,7 @@ const router = express.Router();
 const { upload } = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
 // const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-// const fs = require("fs");
+const fs = require("fs");
 // const jwt = require("jsonwebtoken");
 // const sendMail = require("../utils/sendMail");
 // const sendToken = require("../utils/jwtToken");
@@ -24,6 +24,8 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
         if (err) {
           console.log(err);
           res.status(500).json({ message: "Error deleting file" });
+        } else {
+          res.json({ message: "File deleted successfully" });
         }
       });
       return next(new ErrorHandler("User already exists", 400));
@@ -39,7 +41,11 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
       avatar: fileUrl,
     };
 
-    console.log(user);
+    const newUser = await User.create(user);
+    res.status(201).json({
+      success: true,
+      newUser,
+    });
 
     // const activationToken = createActivationToken(user);
 
