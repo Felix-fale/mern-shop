@@ -5,6 +5,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import { server } from "../../server";
+import { toast } from "react-toastify";
 
 function Signup(props) {
   const [email, setEmail] = useState("");
@@ -35,10 +36,10 @@ function Signup(props) {
         //   Navigate("/");
         // }
         // console.log(res);
-        alert(res.message);
+        toast.success(res.data.message);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.response.data.message);
       });
   };
 
