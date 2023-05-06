@@ -9,7 +9,7 @@ const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
-// const { isAuthenticated } = require("../middleware/auth");
+const { isAuthenticated } = require("../middleware/auth");
 // const user = require("../model/user");
 const crypto = require("crypto");
 
@@ -147,26 +147,26 @@ router.post(
 );
 
 // // load user
-// router.get(
-//   "/getuser",
-//   isAuthenticated,
-//   catchAsyncErrors(async (req, res, next) => {
-//     try {
-//       const user = await User.findById(req.user.id);
+router.get(
+  "/getuser",
+  isAuthenticated,
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const user = await User.findById(req.user.id);
 
-//       if (!user) {
-//         return next(new ErrorHandler("User doesn't exists", 400));
-//       }
+      if (!user) {
+        return next(new ErrorHandler("User doesn't exists", 400));
+      }
 
-//       res.status(200).json({
-//         success: true,
-//         user,
-//       });
-//     } catch (error) {
-//       return next(new ErrorHandler(error.message, 500));
-//     }
-//   })
-// );
+      res.status(200).json({
+        success: true,
+        user,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
 
 // // log out user
 // router.get(
