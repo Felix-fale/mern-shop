@@ -35,8 +35,11 @@ function Signup(props) {
         // if (res.data.success === true) {
         //   Navigate("/");
         // }
-        // console.log(res);
         toast.success(res.data.message);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setAvatar();
       })
       .catch((err) => {
         toast.error(err.response.data.message);

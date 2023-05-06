@@ -70,54 +70,6 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     return next(new ErrorHandler(error.message, 400));
   }
 });
-// router.post("/create-user", upload.single("file"), async (req, res, next) => {
-//   try {
-//     const { name, email, password } = req.body;
-//     const userEmail = await User.findOne({ email });
-
-//     if (userEmail) {
-//       const filename = req.file.filename;
-//       const filePath = `uploads/${filename}`;
-//       fs.unlink(filePath, (err) => {
-//         if (err) {
-//           console.log(err);
-//           res.status(500).json({ message: "Error deleting file" });
-//         }
-//       });
-//       return next(new ErrorHandler("User already exists", 400));
-//     }
-
-//     const filename = req.file.filename;
-//     const fileUrl = path.join(filename);
-
-//     const user = {
-//       name: name,
-//       email: email,
-//       password: password,
-//       avatar: fileUrl,
-//     };
-
-//     const activationToken = createActivationToken(user);
-
-//     const activationUrl = `http://localhost:3000/activation/${activationToken}`;
-
-//     try {
-//       await sendMail({
-//         email: user.email,
-//         subject: "Activate your account",
-//         message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
-//       });
-//       res.status(201).json({
-//         success: true,
-//         message: `please check your email:- ${user.email} to activate your account!`,
-//       });
-//     } catch (error) {
-//       return next(new ErrorHandler(error.message, 500));
-//     }
-//   } catch (error) {
-//     return next(new ErrorHandler(error.message, 400));
-//   }
-// });
 
 // create activation token
 const createActivationToken = (user) => {
@@ -162,37 +114,37 @@ router.post(
   })
 );
 
-// // login user
-// router.post(
-//   "/login-user",
-//   catchAsyncErrors(async (req, res, next) => {
-//     try {
-//       const { email, password } = req.body;
+// // login user 3:29:40
+router.post(
+  "/login-user",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
 
-//       if (!email || !password) {
-//         return next(new ErrorHandler("Please provide the all fields!", 400));
-//       }
+      if (!email || !password) {
+        return next(new ErrorHandler("Please provide the all fields!", 400));
+      }
 
-//       const user = await User.findOne({ email }).select("+password");
+      const user = await User.findOne({ email }).select("+password");
 
-//       if (!user) {
-//         return next(new ErrorHandler("User doesn't exists!", 400));
-//       }
+      if (!user) {
+        return next(new ErrorHandler("User doesn't exists!", 400));
+      }
 
-//       const isPasswordValid = await user.comparePassword(password);
+      const isPasswordValid = await user.comparePassword(password);
 
-//       if (!isPasswordValid) {
-//         return next(
-//           new ErrorHandler("Please provide the correct information", 400)
-//         );
-//       }
+      if (!isPasswordValid) {
+        return next(
+          new ErrorHandler("Please provide the correct information", 400)
+        );
+      }
 
-//       sendToken(user, 201, res);
-//     } catch (error) {
-//       return next(new ErrorHandler(error.message, 500));
-//     }
-//   })
-// );
+      sendToken(user, 201, res);
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
 
 // // load user
 // router.get(
