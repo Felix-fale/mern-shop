@@ -8,6 +8,7 @@ import axios from "axios";
 import { server } from "./server";
 
 function App() {
+  // part 1: 2:35m "User Activation with Frontent Implementation"
   useEffect(() => {
     axios
       .get(`${server}/user/getuser`, { withCredentials: true })
