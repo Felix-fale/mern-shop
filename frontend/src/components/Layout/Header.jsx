@@ -12,6 +12,7 @@ import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import { useSelector } from "react-redux";
+import { productData } from "../../static/data";
 
 function Header(props) {
   // const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -29,6 +30,7 @@ function Header(props) {
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
+    console.log(term);
     setSearchTerm(term);
 
     // const filteredProducts =
@@ -37,6 +39,14 @@ function Header(props) {
     //   product.name.toLowerCase().includes(term.toLowerCase())
     // );
     // setSearchData(filteredProducts);
+
+    const filteredProducts =
+      productData &&
+      productData.filter((product) =>
+        product.name.toLowerCase().includes(term.toLowerCase())
+      );
+    setSearchData(filteredProducts);
+    console.log(searchData);
   };
 
   window.addEventListener("scroll", () => {
@@ -77,10 +87,11 @@ function Header(props) {
                 {searchData &&
                   searchData.map((i, index) => {
                     return (
-                      <Link to={`/product/${i._id}`}>
+                      <Link key={index} to={`/product/${i._id}`}>
                         <div className="w-full flex items-start-py-3">
                           <img
                             // src={`${backend_url}${i.images[0]}`}
+                            src={i.image_Url[0].url}
                             alt=""
                             className="w-[40px] h-[40px] mr-[10px]"
                           />
@@ -103,6 +114,7 @@ function Header(props) {
           </div>
         </div>
       </div>
+
       <div
         className={`${
           active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
