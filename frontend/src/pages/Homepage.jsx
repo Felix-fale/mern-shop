@@ -3,6 +3,7 @@ import Header from "../components/Layout/Header.jsx";
 import Hero from "../components/Route/Hero/Hero.jsx";
 import Categories from "../components/Route/Categories/Categories.jsx";
 import BestDeals from "../components/Route/BestDeals/BestDeals.jsx";
+import FeaturedProduct from "../components/Route/FeaturedProduct/FeaturedProduct.jsx";
 
 function Homepage(props) {
   return (
@@ -11,6 +12,7 @@ function Homepage(props) {
       <Hero />
       <Categories />
       <BestDeals />
+      <FeaturedProduct />
     </div>
   );
 }
