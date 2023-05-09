@@ -12,7 +12,8 @@ import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import { useSelector } from "react-redux";
-import { productData } from "../../static/data";
+import { categoriesData, productData } from "../../static/data";
+import DropDown from "./DropDown.jsx";
 
 function Header(props) {
   // const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -105,12 +106,16 @@ function Header(props) {
           </div>
 
           <div className={`${styles.button}`}>
-            {/* <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
+            <Link
+              //  to={`${isSeller ? "/dashboard" : "/shop-create"}`}
+              to="/seller"
+            >
               <h1 className="text-[#fff] flex items-center">
-                {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
+                {/* {isSeller ? "Go Dashboard" : "Become Seller"}{" "} */}
+                Become Seller
                 <IoIosArrowForward className="ml-1" />
-              </h1> 
-            </Link> */}
+              </h1>
+            </Link>
           </div>
         </div>
       </div>
@@ -137,12 +142,12 @@ function Header(props) {
                 className="absolute right-2 top-4 cursor-pointer"
                 onClick={() => setDropDown(!dropDown)}
               />
-              {/* {dropDown ? (
+              {dropDown ? (
                 <DropDown
                   categoriesData={categoriesData}
                   setDropDown={setDropDown}
                 />
-              ) : null} */}
+              ) : null}
             </div>
           </div>
           {/* navitems */}
