@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
   LoginPage,
   SignupPage,
@@ -10,11 +10,17 @@ import {
 } from "./Routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import Store from "./redux/store";
 import { loadUser } from "./redux/actions/user";
 
 function App() {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   // part 1: 2:35m "User Activation with Frontent Implementation"
   //3:52:02 debut setup redux
   useEffect(() => {
@@ -22,7 +28,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -46,7 +52,7 @@ function App() {
         pauseOnHover
         theme="dark"
       />
-    </BrowserRouter>
+    </>
   );
 }
 
