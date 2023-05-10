@@ -3,5 +3,13 @@ import SignupPage from "../src/pages/SignupPage";
 import ActivationPage from "../src/pages/ActivationPage.jsx";
 import Homepage from "../src/pages/Homepage.jsx";
 import ProductsPage from "../src/pages/ProductsPage.jsx";
+import BestSellingPage from "../src/pages/BestSellingPage.jsx";
 
-export { LoginPage, SignupPage, ActivationPage, Homepage, ProductsPage };
+export {
+  LoginPage,
+  SignupPage,
+  ActivationPage,
+  Homepage,
+  ProductsPage,
+  BestSellingPage,
+};
