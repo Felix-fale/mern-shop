@@ -14,9 +14,10 @@ import Navbar from "./Navbar.jsx";
 import { useSelector } from "react-redux";
 import { categoriesData, productData } from "../../static/data";
 import DropDown from "./DropDown.jsx";
+import { backend_url } from "../../server";
 
 function Header({ activeHeading }) {
-  // const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { isAuthenticated, user, loading } = useSelector((state) => state.user);
   // const { isSeller } = useSelector((state) => state.seller);
   // const { wishlist } = useSelector((state) => state.wishlist);
   // const { cart } = useSelector((state) => state.cart);
@@ -28,6 +29,7 @@ function Header({ activeHeading }) {
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   const [open, setOpen] = useState(false);
+  console.log(user);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -185,13 +187,10 @@ function Header({ activeHeading }) {
 
             <div className={`${styles.noramlFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
-                <Link to="/login">
-                  <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
-                </Link>{" "}
-                {/* {isAuthenticated ? (
+                {isAuthenticated ? (
                   <Link to="/profile">
                     <img
-                      // src={`${backend_url}${user?.avatar}`}
+                      src={`${backend_url}${user?.avatar}`}
                       className="w-[35px] h-[35px] rounded-full"
                       alt=""
                     />
@@ -200,7 +199,7 @@ function Header({ activeHeading }) {
                   <Link to="/login">
                     <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
                   </Link>
-                )} */}
+                )}
               </div>
             </div>
 
