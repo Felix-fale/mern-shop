@@ -29,7 +29,6 @@ function Header({ activeHeading }) {
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   const [open, setOpen] = useState(false);
-  console.log(user);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -49,6 +48,8 @@ function Header({ activeHeading }) {
         product.name.toLowerCase().includes(term.toLowerCase())
       );
     setSearchData(filteredProducts);
+
+    term.length === 0 && setSearchData(false);
     console.log(searchData);
   };
 
@@ -312,7 +313,7 @@ function Header({ activeHeading }) {
                 )}
               </div>
 
-              {/* <Navbar active={activeHeading} /> */}
+              <Navbar active={activeHeading} />
               <div className={`${styles.button} ml-4 !rounded-[4px]`}>
                 <Link to="/shop-create">
                   <h1 className="text-[#fff] flex items-center">
@@ -324,12 +325,12 @@ function Header({ activeHeading }) {
               <br />
               <br />
 
-              {/* <div className="flex w-full justify-center">
+              <div className="flex w-full justify-center">
                 {isAuthenticated ? (
                   <div>
                     <Link to="/profile">
                       <img
-                        // src={`${backend_url}${user.avatar}`}
+                        src={`${backend_url}${user.avatar}`}
                         alt=""
                         className="w-[60px] h-[60px] rounded-full border-[3px] border-[#0eae88]"
                       />
@@ -351,7 +352,7 @@ function Header({ activeHeading }) {
                     </Link>
                   </>
                 )}
-              </div> */}
+              </div>
             </div>
           </div>
         )}
