@@ -33,7 +33,6 @@ function Header({ activeHeading }) {
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
-    console.log(term);
     setSearchTerm(term);
 
     // const filteredProducts =
@@ -51,7 +50,6 @@ function Header({ activeHeading }) {
     setSearchData(filteredProducts);
 
     term.length === 0 && setSearchData(false);
-    console.log(searchData);
   };
 
   window.addEventListener("scroll", () => {
