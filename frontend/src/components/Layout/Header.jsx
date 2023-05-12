@@ -15,9 +15,10 @@ import { useSelector } from "react-redux";
 import { categoriesData, productData } from "../../static/data";
 import DropDown from "./DropDown.jsx";
 import { backend_url } from "../../server";
+import { loadUser } from "../../redux/actions/user";
 
 function Header({ activeHeading }) {
-  const { isAuthenticated, user, loading } = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   // const { isSeller } = useSelector((state) => state.seller);
   // const { wishlist } = useSelector((state) => state.wishlist);
   // const { cart } = useSelector((state) => state.cart);
