@@ -7,7 +7,7 @@ import ProductDetails from "../components/Products/ProductDetails.jsx";
 import { useSelector } from "react-redux";
 import { productData } from "../static/data";
 
-function ProductDetailsPage(props) {
+function ProductDetailsPage() {
   // const { allProducts } = useSelector((state) => state.products);
   // const { allEvents } = useSelector((state) => state.events);
   const { name } = useParams();
