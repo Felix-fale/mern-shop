@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
 import ProductDetails from "../components/Products/ProductDetails.jsx";
-// import SuggestedProduct from "../components/Products/SuggestedProduct";
+import SuggestedProduct from "../components/Products/SuggestedProduct.jsx";
 import { useSelector } from "react-redux";
 import { productData } from "../static/data";
 
@@ -35,14 +35,7 @@ function ProductDetailsPage() {
     <div>
       <Header />
       <ProductDetails data={data} />
-      {/* <ProductDetails data={data} />
-        {
-          !eventData && (
-            <>
-            {data && <SuggestedProduct data={data} />}
-            </>
-          )
-        } */}
+      {data && <SuggestedProduct data={data} />}
       <Footer />
     </div>
   );
