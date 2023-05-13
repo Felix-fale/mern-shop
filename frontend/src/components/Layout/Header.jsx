@@ -68,10 +68,13 @@ function Header({ activeHeading }) {
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
           <div>
             <Link to="/">
-              <img
+              {/* <img
                 src="https://shopo.quomodothemes.website/assets/images/logo.svg"
                 alt=""
-              />
+              /> */}
+              <h2 className="text-3xl font-bold">
+                A<span className="text-orange-600">ssie</span>.
+              </h2>
             </Link>
           </div>
           {/* search box */}
@@ -233,11 +236,14 @@ function Header({ activeHeading }) {
           </div>
           <div>
             <Link to="/">
-              <img
+              {/* <img
                 src="https://shopo.quomodothemes.website/assets/images/logo.svg"
                 alt=""
                 className="mt-3 cursor-pointer"
-              />
+              /> */}
+              <h2 className="text-3xl font-bold">
+                A<span className="text-orange-600">ssie</span>.
+              </h2>
             </Link>
           </div>
           <div>
