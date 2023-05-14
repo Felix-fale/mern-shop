@@ -28,8 +28,10 @@ function ProfileContent({ active }) {
   const { user } = useSelector((state) => state.user);
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
-  const [phoneNumber, setPhoneNumber] = useState();
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
   const [zipeCode, setZipeCode] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const dispatch = useDispatch();
@@ -164,13 +166,25 @@ function ProfileContent({ active }) {
                 </div>
 
                 <div className=" w-[100%] 800px:w-[50%]">
-                  <label className="block pb-2">Enter your password</label>
+                  <label className="block pb-2">Address 1</label>
                   <input
-                    type="password"
+                    type="address"
                     className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
                     required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={address1}
+                    onChange={(e) => setAddress1(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="w-full 800px:flex block pb-3">
+                <div className=" w-[100%] 800px:w-[50%]">
+                  <label className="block pb-2">Address 2</label>
+                  <input
+                    type="address"
+                    className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+                    required
+                    value={address2}
+                    onChange={(e) => setAddress2(e.target.value)}
                   />
                 </div>
               </div>
