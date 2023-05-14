@@ -19,6 +19,7 @@ function ProfilePage(props) {
         </div>
         <ProfileContent active={active} />
       </div>
+      <div className="h-[100px]"></div>
     </div>
   );
 }
