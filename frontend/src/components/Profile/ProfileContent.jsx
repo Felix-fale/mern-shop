@@ -36,45 +36,10 @@ function ProfileContent({ active }) {
   const [avatar, setAvatar] = useState(null);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error);
-  //     dispatch({ type: "clearErrors" });
-  //   }
-  //   if (successMessage) {
-  //     toast.success(successMessage);
-  //     dispatch({ type: "clearMessages" });
-  //   }
-  // }, [error, successMessage]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // dispatch(updateUserInformation(name, email, phoneNumber, password));
   };
-
-  // const handleImage = async (e) => {
-  //   const file = e.target.files[0];
-  //   setAvatar(file);
-
-  //   const formData = new FormData();
-
-  //   formData.append("image", e.target.files[0]);
-
-  //   await axios
-  //     .put(`${server}/user/update-avatar`, formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //       withCredentials: true,
-  //     })
-  //     .then((response) => {
-  //        dispatch(loadUser());
-  //        toast.success("avatar updated successfully!");
-  //     })
-  //     .catch((error) => {
-  //       toast.error(error);
-  //     });
-  // };
 
   return (
     <div className="w-full">
