@@ -47,10 +47,10 @@ function ProfileContent({ active }) {
   //   }
   // }, [error, successMessage]);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(updateUserInformation(name, email, phoneNumber, password));
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // dispatch(updateUserInformation(name, email, phoneNumber, password));
+  };
 
   // const handleImage = async (e) => {
   //   const file = e.target.files[0];
@@ -104,9 +104,7 @@ function ProfileContent({ active }) {
           <br />
           <br />
           <div className="w-full px-5">
-            <form
-            //  onSubmit={handleSubmit} aria-required={true}
-            >
+            <form onSubmit={handleSubmit} aria-required={true}>
               <div className="w-full 800px:flex block pb-3">
                 <div className=" w-[100%] 800px:w-[50%]">
                   <label className="block pb-2">Full Name</label>

@@ -72,7 +72,7 @@ function Header({ activeHeading }) {
                 src="https://shopo.quomodothemes.website/assets/images/logo.svg"
                 alt=""
               /> */}
-              <h2 className="text-4xl font-bold">
+              <h2 className="text-5xl font-bold">
                 A<span className="text-orange-600">ssie</span>.
               </h2>
             </Link>
@@ -241,7 +241,7 @@ function Header({ activeHeading }) {
                 alt=""
                 className="mt-3 cursor-pointer"
               /> */}
-              <h2 className="text-4xl font-bold">
+              <h2 className="text-5xl font-bold">
                 A<span className="text-orange-600">ssie</span>.
               </h2>
             </Link>
