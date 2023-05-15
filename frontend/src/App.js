@@ -19,6 +19,7 @@ import { useEffect, useLayoutEffect } from "react";
 import Store from "./redux/store";
 import { loadUser } from "./redux/actions/user";
 import { useSelector } from "react-redux";
+import PretectedRoute from "./ProtectedRoute";
 
 function App() {
   const { pathname } = useLocation();
@@ -26,7 +27,7 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const { loading } = useSelector((state) => state.user);
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
 
   // part 1: 2:35m "User Activation with Frontent Implementation"
   //3:52:02 debut setup redux
@@ -55,7 +56,14 @@ function App() {
             <Route path="/best-selling" element={<BestSellingPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/faq" element={<FAQPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/profile"
+              element={
+                <PretectedRoute isAuthenticated={isAuthenticated}>
+                  <ProfilePage />
+                </PretectedRoute>
+              }
+            />
           </Routes>
           <ToastContainer
             position="bottom-center"
