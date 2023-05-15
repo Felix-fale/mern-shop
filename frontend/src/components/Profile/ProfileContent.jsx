@@ -206,7 +206,11 @@ function ProfileContent({ active }) {
       )}
 
       {/* Refund */}
-      {active === 3 && <div>{/* <AllRefundOrders /> */}</div>}
+      {active === 3 && (
+        <div>
+          <AllRefundOrders />
+        </div>
+      )}
 
       {/* Track order */}
       {active === 5 && <div>{/* <TrackOrder /> */}</div>}
@@ -416,13 +420,13 @@ const AllRefundOrders = () => {
 
   const row = [];
 
-  eligibleOrders &&
-    eligibleOrders.forEach((item) => {
+  orders &&
+    orders.forEach((item) => {
       row.push({
         id: item._id,
-        itemsQty: item.cart.length,
+        itemsQty: item.orderItems.length,
         total: "US$ " + item.totalPrice,
-        status: item.status,
+        status: item.orderStatus,
       });
     });
 
