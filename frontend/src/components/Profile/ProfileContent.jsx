@@ -235,6 +235,16 @@ const AllOrders = () => {
       totalPrice: 120,
       orderStatus: "Processing",
     },
+    {
+      _id: "74555554646fefdgdddssf",
+      orderItems: [
+        {
+          name: "Iphone 14 prox max",
+        },
+      ],
+      totalPrice: 1200,
+      orderStatus: "Procexssing",
+    },
   ];
 
   // useEffect(() => {
@@ -298,9 +308,9 @@ const AllOrders = () => {
     orders.forEach((item) => {
       row.push({
         id: item._id,
-        itemsQty: item.cart.length,
+        itemsQty: item.orderItems.length,
         total: "US$ " + item.totalPrice,
-        status: item.status,
+        status: item.orderStatus,
       });
     });
 
