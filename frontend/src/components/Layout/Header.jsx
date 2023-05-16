@@ -54,6 +54,11 @@ function Header({ activeHeading }) {
     term.length === 0 && setSearchData(false);
   };
 
+  const hideSearchData = () => {
+    setSearchData(false);
+    setOpen(false);
+  };
+
   window.addEventListener("scroll", () => {
     if (window.scrollY > 70) {
       setActive(true);
@@ -90,26 +95,31 @@ function Header({ activeHeading }) {
               size={30}
               className="absolute right-2 top-1.5 cursor-pointer"
             />
-            {searchData && searchData.length !== 0 ? (
+            {searchData && (
               <div className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-[9] p-4">
-                {searchData &&
-                  searchData.map((i, index) => {
-                    return (
-                      <Link key={index} to={`/product/${i._id}`}>
-                        <div className="w-full flex items-start-py-3">
-                          <img
-                            // src={`${backend_url}${i.images[0]}`}
-                            src={i.image_Url[0].url}
-                            alt=""
-                            className="w-[40px] h-[40px] mr-[10px]"
-                          />
-                          <h1>{i.name}</h1>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                {searchData.map((i, index) => {
+                  const d = i.name;
+
+                  const Product_name = d.replace(/\s+/g, "-");
+                  return (
+                    <Link
+                      key={index}
+                      onClick={hideSearchData}
+                      to={`/product/${Product_name}`}
+                    >
+                      <div className="flex items-center">
+                        <img
+                          src={i.image_Url[0].url}
+                          alt=""
+                          className="w-[50px] mr-2"
+                        />
+                        <h5>{i.name}</h5>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
-            ) : null}
+            )}
           </div>
 
           <div className={`${styles.button}`}>
@@ -253,15 +263,15 @@ function Header({ activeHeading }) {
             >
               <AiOutlineShoppingCart size={30} />
               <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
-                {/* {cart && cart.length} */}
+                1{/* {cart && cart.length} */}
               </span>
             </div>
           </div>
           {/* cart popup */}
-          {/* {openCart ? <Cart setOpenCart={setOpenCart} /> : null} */}
+          {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
 
           {/* wishlist popup */}
-          {/* {openWishlist ? <Wishlist setOpenWishlist={setOpenWishlist} /> : null} */}
+          {openWishlist ? <Wishlist setOpenWishlist={setOpenWishlist} /> : null}
         </div>
 
         {/* header sidebar */}
@@ -278,7 +288,7 @@ function Header({ activeHeading }) {
                   >
                     <AiOutlineHeart size={30} className="mt-5 ml-3" />
                     <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
-                      {/* {wishlist && wishlist.length} */}
+                      3{/* {wishlist && wishlist.length} */}
                     </span>
                   </div>
                 </div>
@@ -299,12 +309,16 @@ function Header({ activeHeading }) {
                 />
                 {searchData && (
                   <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
-                    {searchData.map((i) => {
+                    {searchData.map((i, index) => {
                       const d = i.name;
 
                       const Product_name = d.replace(/\s+/g, "-");
                       return (
-                        <Link to={`/product/${Product_name}`}>
+                        <Link
+                          key={index}
+                          onClick={hideSearchData}
+                          to={`/product/${Product_name}`}
+                        >
                           <div className="flex items-center">
                             <img
                               src={i.image_Url[0].url}
