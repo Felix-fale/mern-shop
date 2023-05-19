@@ -13,56 +13,56 @@ const ErrorHandler = require("../utils/ErrorHandler");
 const sendShopToken = require("../utils/shopToken");
 
 // create shop
-// router.post("/create-shop", upload.single("file"), async (req, res, next) => {
-//   try {
-//     const { email } = req.body;
-//     const sellerEmail = await Shop.findOne({ email });
-//     if (sellerEmail) {
-//       const filename = req.file.filename;
-//       const filePath = `uploads/${filename}`;
-//       fs.unlink(filePath, (err) => {
-//         if (err) {
-//           console.log(err);
-//           res.status(500).json({ message: "Error deleting file" });
-//         }
-//       });
-//       return next(new ErrorHandler("User already exists", 400));
-//     }
+router.post("/create-shop", upload.single("file"), async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const sellerEmail = await Shop.findOne({ email });
+    if (sellerEmail) {
+      const filename = req.file.filename;
+      const filePath = `uploads/${filename}`;
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.log(err);
+          res.status(500).json({ message: "Error deleting file" });
+        }
+      });
+      return next(new ErrorHandler("User already exists", 400));
+    }
 
-//     const filename = req.file.filename;
-//     const fileUrl = path.join(filename);
+    const filename = req.file.filename;
+    const fileUrl = path.join(filename);
 
-//     const seller = {
-//       name: req.body.name,
-//       email: email,
-//       password: req.body.password,
-//       avatar: fileUrl,
-//       address: req.body.address,
-//       phoneNumber: req.body.phoneNumber,
-//       zipCode: req.body.zipCode,
-//     };
+    const seller = {
+      name: req.body.name,
+      email: email,
+      password: req.body.password,
+      avatar: fileUrl,
+      address: req.body.address,
+      phoneNumber: req.body.phoneNumber,
+      zipCode: req.body.zipCode,
+    };
 
-//     const activationToken = createActivationToken(seller);
+    const activationToken = createActivationToken(seller);
 
-//     const activationUrl = `https://eshop-tutorial-cefl.vercel.app/seller/activation/${activationToken}`;
+    const activationUrl = `https://eshop-tutorial-cefl.vercel.app/seller/activation/${activationToken}`;
 
-//     try {
-//       await sendMail({
-//         email: seller.email,
-//         subject: "Activate your Shop",
-//         message: `Hello ${seller.name}, please click on the link to activate your shop: ${activationUrl}`,
-//       });
-//       res.status(201).json({
-//         success: true,
-//         message: `please check your email:- ${seller.email} to activate your shop!`,
-//       });
-//     } catch (error) {
-//       return next(new ErrorHandler(error.message, 500));
-//     }
-//   } catch (error) {
-//     return next(new ErrorHandler(error.message, 400));
-//   }
-// });
+    try {
+      await sendMail({
+        email: seller.email,
+        subject: "Activate your Shop",
+        message: `Hello ${seller.name}, please click on the link to activate your shop: ${activationUrl}`,
+      });
+      res.status(201).json({
+        success: true,
+        message: `please check your email:- ${seller.email} to activate your shop!`,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 400));
+  }
+});
 
 // // create activation token
 // const createActivationToken = (seller) => {
