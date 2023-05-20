@@ -6,11 +6,11 @@ const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
 const Shop = require("../model/shop");
-const { isAuthenticated, isSeller, isAdmin } = require("../middleware/auth");
-const { upload } = require("../multer");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-const ErrorHandler = require("../utils/ErrorHandler");
-const sendShopToken = require("../utils/shopToken");
+// const { isAuthenticated, isSeller, isAdmin } = require("../middleware/auth");
+// const { upload } = require("../multer");
+// const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+// const ErrorHandler = require("../utils/ErrorHandler");
+// const sendShopToken = require("../utils/shopToken");
 
 // create shop
 router.post("/create-shop", upload.single("file"), async (req, res, next) => {
