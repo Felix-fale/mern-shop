@@ -9,7 +9,7 @@ const Shop = require("../model/shop");
 // const { isAuthenticated, isSeller, isAdmin } = require("../middleware/auth");
 const { upload } = require("../multer");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-// const ErrorHandler = require("../utils/ErrorHandler");
+const ErrorHandler = require("../utils/ErrorHandler");
 // const sendShopToken = require("../utils/shopToken");
 
 // create shop
