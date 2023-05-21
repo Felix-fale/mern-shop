@@ -6,6 +6,7 @@ import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";
 import { RxAvatar } from "react-icons/rx";
+import loaderImg from "../../assets/spinner.jpg";
 
 function ShopCreates(props) {
   const navigate = useNavigate();
@@ -17,9 +18,11 @@ function ShopCreates(props) {
   const [avatar, setAvatar] = useState();
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const newForm = new FormData();
@@ -34,16 +37,18 @@ function ShopCreates(props) {
     axios
       .post(`${server}/shop/create-shop`, newForm, config)
       .then((res) => {
+        setLoading(false);
         toast.success(res.data.message);
-        setName("");
-        setEmail("");
-        setPassword("");
-        setAvatar();
-        setZipCode();
-        setAddress("");
-        setPhoneNumber();
+        // setName("");
+        // setEmail("");
+        // setPassword("");
+        // setAvatar();
+        // setZipCode();
+        // setAddress("");
+        // setPhoneNumber();
       })
       .catch((error) => {
+        setLoading(false);
         toast.error(error.response.data.message);
       });
   };
@@ -230,7 +235,11 @@ function ShopCreates(props) {
                 type="submit"
                 className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
               >
-                Submit
+                {loading ? (
+                  <img src={loaderImg} alt="Loading..." className="h-6 w-6" />
+                ) : (
+                  "Submit"
+                )}
               </button>
             </div>
             <div className={`${styles.noramlFlex} w-full`}>
