@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import ShopLogin from "../components/Shop/ShopLogin";
+import ShopLogin from "../components/Shop/ShopLogin.jsx";
 
 const ShopLoginPage = () => {
   const navigate = useNavigate();
@@ -12,7 +12,11 @@ const ShopLoginPage = () => {
   //     navigate(`/dashboard`);
   //   }
   // }, [isLoading, isSeller]);
-  return <div>{/* <ShopLogin /> */}</div>;
+  return (
+    <div>
+      <ShopLogin />
+    </div>
+  );
 };
 
 export default ShopLoginPage;
