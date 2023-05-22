@@ -29,7 +29,7 @@ function ShopLogin() {
       )
       .then((res) => {
         toast.success("Login Success!");
-        navigate("/dashboard");
+        // navigate("/");
         // dispatch(loadUser());
         window.location.reload(true);
       })

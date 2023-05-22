@@ -22,7 +22,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useLayoutEffect } from "react";
 import Store from "./redux/store";
-import { loadUser } from "./redux/actions/user";
+import { loadSeller, loadUser } from "./redux/actions/user";
 import { useSelector } from "react-redux";
 import PretectedRoute from "./ProtectedRoute";
 
@@ -38,6 +38,7 @@ function App() {
   //3:52:02 debut setup redux
   useEffect(() => {
     Store.dispatch(loadUser());
+    Store.dispatch(loadSeller());
   }, []);
 
   return (
