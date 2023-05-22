@@ -10,7 +10,7 @@ const Shop = require("../model/shop");
 const { upload } = require("../multer");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ErrorHandler = require("../utils/ErrorHandler");
-// const sendShopToken = require("../utils/shopToken");
+const sendShopToken = require("../utils/shopToken.js");
 
 // create shop
 router.post("/create-shop", upload.single("file"), async (req, res, next) => {

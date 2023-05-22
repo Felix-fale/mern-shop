@@ -83,15 +83,15 @@ shopSchema.pre("save", async function (next) {
 });
 
 // // jwt token
-// shopSchema.methods.getJwtToken = function () {
-//   return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
-//     expiresIn: process.env.JWT_EXPIRES,
-//   });
-// };
+shopSchema.methods.getJwtToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRES,
+  });
+};
 
 // // comapre password
-// shopSchema.methods.comparePassword = async function (enteredPassword) {
-//   return await bcrypt.compare(enteredPassword, this.password);
-// };
+shopSchema.methods.comparePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 module.exports = mongoose.model("Shop", shopSchema);
