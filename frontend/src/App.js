@@ -1,5 +1,11 @@
 import "./App.css";
-import { Routes, Route, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import loaderImg from "./assets/spinner.jpg";
 import {
   LoginPage,
@@ -33,6 +39,8 @@ function App() {
   }, [pathname]);
 
   const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const seller = useSelector((state) => state.seller);
+  // const navigate = useNavigate();
 
   // part 1: 2:35m "User Activation with Frontent Implementation"
   //3:52:02 debut setup redux
@@ -40,6 +48,12 @@ function App() {
     Store.dispatch(loadUser());
     Store.dispatch(loadSeller());
   }, []);
+  // if (isSeller === true) {
+  //   // navigate("/seller/${seller._id");
+  //   return <Navigate to="/shop" replace />;
+  // }
+
+  console.log(seller);
 
   return (
     <>
