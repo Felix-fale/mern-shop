@@ -8,6 +8,7 @@ module.exports = (err, req, res, next) => {
   if (err.name === "CastError") {
     const message = `Resources not found with this id.. Invalid ${err.path}`;
     err = new ErrorHandler(message, 400);
+    // err = new ErrorHandler(message, 400);
   }
 
   // Duplicate key error
