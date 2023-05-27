@@ -34,12 +34,8 @@ import PretectedRoute from "./ProtectedRoute";
 
 function App() {
   const { pathname } = useLocation();
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
   const { loading, isAuthenticated } = useSelector((state) => state.user);
-  const seller = useSelector((state) => state.seller);
+  const { isLoading, isSeller, seller } = useSelector((state) => state.seller);
   // const navigate = useNavigate();
 
   // part 1: 2:35m "User Activation with Frontent Implementation"
@@ -53,11 +49,13 @@ function App() {
   //   return <Navigate to="/shop" replace />;
   // }
 
-  console.log(seller);
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>
-      {loading ? (
+      {loading || isLoading ? (
         <div className="flex items-center justify-center h-screen">
           <img src={loaderImg} alt="Loading..." className="h-16 w-16" />
         </div>
@@ -97,8 +95,10 @@ function App() {
                 </PretectedRoute>
               }
             />
+            {/* Shop Routes */}
             <Route path="/shop-create" element={<ShopCreatePage />} />
             <Route path="/shop-login" element={<ShopLoginPage />} />
+            {/* <Route path="/shop-login" element={<ShopHomePage />} /> */}
           </Routes>
           <ToastContainer
             position="bottom-center"
