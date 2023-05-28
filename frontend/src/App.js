@@ -32,11 +32,12 @@ import { loadSeller, loadUser } from "./redux/actions/user";
 import { useSelector } from "react-redux";
 import PretectedRoute from "./ProtectedRoute";
 import { ShopHomePage } from "./ShopRoutes.js";
+import SellerProtectedRoute from "./SellerProtectedRoute";
 
 function App() {
   const { pathname } = useLocation();
   const { loading, isAuthenticated } = useSelector((state) => state.user);
-  const { isLoading, isSeller, seller } = useSelector((state) => state.seller);
+  const { isLoading, isSeller } = useSelector((state) => state.seller);
   // const navigate = useNavigate();
 
   // part 1: 2:35m "User Activation with Frontent Implementation"
@@ -99,7 +100,14 @@ function App() {
             {/* Shop Routes */}
             <Route path="/shop-create" element={<ShopCreatePage />} />
             <Route path="/shop-login" element={<ShopLoginPage />} />
-            <Route path="/shop/:id" element={<ShopHomePage />} />
+            <Route
+              path="/shop/:id"
+              element={
+                <SellerProtectedRoute isSeller={isSeller}>
+                  <ShopHomePage />
+                </SellerProtectedRoute>
+              }
+            />
           </Routes>
           <ToastContainer
             position="bottom-center"
