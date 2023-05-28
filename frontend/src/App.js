@@ -31,6 +31,7 @@ import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user";
 import { useSelector } from "react-redux";
 import PretectedRoute from "./ProtectedRoute";
+import { ShopHomePage } from "./ShopRoutes.js";
 
 function App() {
   const { pathname } = useLocation();
@@ -98,7 +99,7 @@ function App() {
             {/* Shop Routes */}
             <Route path="/shop-create" element={<ShopCreatePage />} />
             <Route path="/shop-login" element={<ShopLoginPage />} />
-            {/* <Route path="/shop-login" element={<ShopHomePage />} /> */}
+            <Route path="/shop/:id" element={<ShopHomePage />} />
           </Routes>
           <ToastContainer
             position="bottom-center"
